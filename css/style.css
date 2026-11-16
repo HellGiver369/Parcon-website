@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,6 +6,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -24,7 +25,6 @@ body {
 .section-padding {
     padding: 90px 0;
 }
-
 
 
 header {
@@ -82,7 +82,6 @@ header {
 }
 
 
-
 .hero {
     min-height: 620px;
     background-color: #15181D;
@@ -125,6 +124,7 @@ header {
 
 .hero-image {
     flex: 1;
+    min-width: 0;
 }
 
 .hero-image img {
@@ -134,7 +134,6 @@ header {
     object-fit: cover;
     border: 1px solid #9A7B4F;
 }
-
 
 
 .btn {
@@ -156,21 +155,37 @@ header {
 }
 
 
-
-
 .section-heading {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 50px;
     text-align: center;
-    margin-bottom: 50px;
 }
 
-.section-heading h2,
+.section-heading .section-subtitle {
+    color: #9A7B4F;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.3;
+    color: #15181D;
+    margin: 0 auto;
+}
+
 .cta-section h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    color: #15181D;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 600;
+    line-height: 1.3;
 }
-
-
 
 
 .about {
@@ -210,48 +225,58 @@ header {
 }
 
 
-
-
 .highlights {
     background-color: #F2F2F2;
 }
 
-.features-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+
+.features-table-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    overflow-x: auto;
 }
 
-.feature-card {
+.features-table {
+    width: 100%;
+    border-collapse: collapse;
     background-color: #FFFFFF;
-    padding: 35px 30px;
-    border-bottom: 3px solid #9A7B4F;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
 }
 
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+.features-table thead {
+    background-color: #15181D;
+    color: #FFFFFF;
 }
 
-.feature-number {
+.features-table th {
+    padding: 22px 30px;
     color: #9A7B4F;
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    margin-bottom: 15px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 700;
 }
 
-.feature-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.feature-card p {
-    color: #666666;
+.features-table td {
+    padding: 28px 30px;
+    border-bottom: 1px solid #DDDDDD;
+    color: #555555;
     font-size: 14px;
+    line-height: 1.7;
 }
 
+.features-table td:first-child {
+    width: 30%;
+    min-width: 150px;
+    color: #15181D;
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.features-table tbody tr:last-child td {
+    border-bottom: 3px solid #9A7B4F;
+}
 
 
 .cta-section {
@@ -261,12 +286,16 @@ header {
     padding: 85px 20px;
 }
 
+.cta-section .section-subtitle {
+    margin-bottom: 15px;
+}
+
 .cta-section h2 {
     color: #FFFFFF;
     margin-bottom: 20px;
 }
 
-.cta-section > p:not(.section-subtitle) {
+.cta-section > .container > p:not(.section-subtitle) {
     color: #D0D0D0;
     margin-bottom: 30px;
 }
@@ -324,7 +353,6 @@ footer {
 }
 
 
-
 @media (max-width: 1000px) {
 
     .header-content {
@@ -351,11 +379,21 @@ footer {
 
     .about-content {
         flex-direction: column;
+        gap: 30px;
     }
 
+    .about-text,
+    .about-highlight {
+        width: 100%;
+    }
 }
 
+
 @media (max-width: 700px) {
+
+    header {
+        padding: 18px 0;
+    }
 
     .nav-links {
         gap: 12px 18px;
@@ -367,6 +405,11 @@ footer {
 
     .hero {
         padding: 65px 6%;
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
     }
 
     .hero-image img {
@@ -377,17 +420,49 @@ footer {
         padding: 65px 0;
     }
 
+    .section-heading {
+        margin-bottom: 35px;
+        padding: 0 10px;
+    }
+
     .section-heading h2,
     .cta-section h2 {
         font-size: 29px;
     }
 
-    .features-container {
-        grid-template-columns: 1fr;
+    .section-heading .section-subtitle {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .about-highlight {
+        padding: 28px;
+    }
+
+    .features-table {
+        min-width: 550px;
+    }
+
+    .features-table th,
+    .features-table td {
+        padding: 18px 15px;
+        font-size: 12px;
+    }
+
+    .features-table td:first-child {
+        font-size: 15px;
+        min-width: 125px;
+    }
+
+    .cta-section {
+        padding: 65px 15px;
     }
 
     .footer-content {
         flex-direction: column;
     }
 
+    .footer-brand h2 {
+        font-size: 21px;
+    }
 }
